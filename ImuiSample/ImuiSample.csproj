@@ -65,6 +65,7 @@
     <Compile Include="Class\Activites\ImageBrowserActivity.cs" />
     <Compile Include="Class\Activites\VideoActivity.cs" />
     <Compile Include="Class\BuildConfig.cs" />
+    <Compile Include="Class\CusApp.cs" />
     <Compile Include="Class\IMUISampleApplication.cs" />
     <Compile Include="Class\Models\DefaultUser.cs" />
     <Compile Include="Class\Models\MyMessage.cs" />
@@ -130,7 +131,11 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\layout1.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_chat.axml">
       <SubType>Designer</SubType>
