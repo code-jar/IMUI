@@ -15,13 +15,10 @@ namespace ImuiQS.Class.Models
 {
     public class MyMessage : Java.Lang.Object, IMessage
     {
-
-
-
-
         public MyMessage(int type)
         {
             this.Type = type;
+            this.MessageStatus = MessageMessageStatus.Created;
         }
         public MyMessage(string text, int type) : this(type)
         {
