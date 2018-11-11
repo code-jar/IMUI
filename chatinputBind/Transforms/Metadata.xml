@@ -7,11 +7,6 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-  <!--<remove-node path="/api/package[@name='cn.jiguang.imui.chatinput.model']/class[@name='FileItem']" />-->
-
-  <!--<attr path="/api/package[@name='cn.jiguang.imui.chatinput.model']/class[@name='FileItem']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='cn.jiguang.imui.chatinput.model.FileItem']]" name=""></attr>-->
-
-  <remove-node path="/api/package[@name='cn.jiguang.imui.chatinput.photo']/class[@name='PhotoAdapter']" />
-
+  <!--<attr path="/api/package[@name='cn.jiguang.imui.chatinput.camera']/class[@name='CameraNew.CompareSizesByArea']/method[@name='compare' and count(parameter)=2 and parameter[1][@type='Java.Lang.Object'] and parameter[2][@type='Java.Lang.Object']]" />-->
 
 </metadata>

@@ -1,6 +1,5 @@
 <resources>
-  <string name="app_name">ImuiSample</string>
-  <string name="action_settings">Settings</string>
+  <string name="app_name">IMUISample</string>
 
   <string name="input_hint">Send message</string>
   <string name="message_click_hint">Message click event</string>
@@ -39,5 +38,4 @@
     <item>History message 9</item>
     <item>History message 10</item>
   </string-array>
-  
 </resources>

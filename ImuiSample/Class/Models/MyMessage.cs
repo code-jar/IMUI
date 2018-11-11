@@ -16,9 +16,6 @@ namespace ImuiQS.Class.Models
     public class MyMessage : Java.Lang.Object, IMessage
     {
 
-
-
-
         public MyMessage(int type)
         {
             this.Type = type;

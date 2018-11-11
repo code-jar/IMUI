@@ -12,13 +12,16 @@
         android:layout_height="48dp"
         android:background="@color/chat_title_bg"
         android:gravity="center">
-        <TextView
+
+		<TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="@dimen/chat_title_bar_txt_size" />
+
     </LinearLayout>
+
     <cn.jiguang.imui.messages.ptr.PullToRefreshLayout
         android:id="@+id/pull_to_refresh_layout"
         android:layout_width="match_parent"
@@ -31,6 +34,7 @@
         app:PtrResistance="1.2"
         android:layout_above="@+id/chat_input"
         android:layout_below="@+id/title_container">
+
         <cn.jiguang.imui.messages.MessageList
             android:id="@+id/msg_list"
             android:layout_width="match_parent"
@@ -50,11 +54,16 @@
             app:sendBubblePaddingRight="16dp"
             app:sendTextColor="#7587A8"
             app:sendTextSize="16sp" />
+
     </cn.jiguang.imui.messages.ptr.PullToRefreshLayout>
-    <cn.jiguang.imui.chatinput.ChatInputView
+
+     <cn.jiguang.imui.chatinput.ChatInputView
         android:id="@+id/chat_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:showSelectAlbum="true" />
+        app:inputMarginLeft="3dp"
+        app:inputMarginRight="3dp"
+        app:showSelectAlbum="true"/>
+
 </ImuiSample.Class.Views.ChatView>

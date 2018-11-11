@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using CN.Jiguang.Imui.Chatinput;
 using CN.Jiguang.Imui.Chatinput.Listener;
+using CN.Jiguang.Imui.Chatinput.Menu.View;
 using CN.Jiguang.Imui.Chatinput.Record;
 using CN.Jiguang.Imui.Messages;
 using CN.Jiguang.Imui.Messages.Ptr;
@@ -77,8 +78,22 @@ namespace ImuiSample.Class.Views
             //        mMsgList.setShowReceiverDisplayName(true);
             //        mMsgList.setShowSenderDisplayName(false);
 
+            CN.Jiguang.Imui.Chatinput.Menu.MenuManager menuManager = mChatInput.MenuManager;
+            menuManager.AddCustomMenu("MY_CUSTOM", Resource.Layout.menu_text_item, Resource.Layout.menu_text_feature);
 
+            // Custom menu order
+            menuManager.SetMenu(CN.Jiguang.Imui.Chatinput.Menu.Menu.NewBuilder()
+                .Customize(true)
+                .SetRight(CN.Jiguang.Imui.Chatinput.Menu.Menu.TagSend)
+                .SetBottom(CN.Jiguang.Imui.Chatinput.Menu.Menu.TagVoice,
+                CN.Jiguang.Imui.Chatinput.Menu.Menu.TagEmoji,
+                CN.Jiguang.Imui.Chatinput.Menu.Menu.TagGallery,
+                CN.Jiguang.Imui.Chatinput.Menu.Menu.TagCamera, "MY_CUSTOM")
+                .Build());
+
+            menuManager.SetCustomMenuClickListener(new CustomMenuEventListener());
         }
+
         public PullToRefreshLayout GetPtrLayout()
         {
             return mPtrLayout;
@@ -154,5 +169,24 @@ namespace ImuiSample.Class.Views
             return this.mSelectAlbumIb;
         }
 
+        public class CustomMenuEventListener : Java.Lang.Object, ICustomMenuEventListener
+        {
+            public void OnMenuFeatureVisibilityChanged(int visibility, string tag, MenuFeature menuFeature)
+            {
+                if (visibility == (int)SystemUiFlags.Visible)
+                {
+                    // Menu feature is visible.
+                }
+                else
+                {
+                    // Menu feature is gone.
+                }
+            }
+
+            public bool OnMenuItemClick(string p0, MenuItem p1)
+            {
+                return true;
+            }
+        }
     }
 }

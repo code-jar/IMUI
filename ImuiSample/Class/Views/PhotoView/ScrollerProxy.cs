@@ -16,7 +16,7 @@ namespace ImuiQS.Class.Views.PhotoView
     {
         public static ScrollerProxy GetScroller(Context context)
         {
-            if ((int)Android.OS.Build.VERSION.SdkInt < (int)Build.VERSION_CODES.Gingerbread)
+            if ((int)Android.OS.Build.VERSION.SdkInt < (int)Android.OS.BuildVersionCodes.Gingerbread)
             {
                 return new PreGingerScroller(context);
             }

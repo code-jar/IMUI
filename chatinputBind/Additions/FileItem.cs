@@ -9,15 +9,15 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 
 namespace CN.Jiguang.Imui.Chatinput.Model
 {
+
     public partial class FileItem : global::Java.Lang.Object, global::Java.Lang.IComparable
     {
         public int CompareTo(Java.Lang.Object o)
         {
-            return CompareTo(o);
+            return this.CompareTo((FileItem)o);
         }
     }
 }

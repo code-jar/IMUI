@@ -29,7 +29,7 @@ using Pub.Devrel.Easypermissions;
 
 namespace ImuiSample.Class.Activites
 {
-    [Activity(Label = "MessageListActivity")]
+    [Activity(Label = "MessageListActivity", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MessageListActivity : Activity
     {
         private static string TAG = "MessageListActivity";
@@ -211,12 +211,15 @@ namespace ImuiSample.Class.Activites
             public bool SwitchToCameraMode()
             {
                 ScrollToBottom();
-                string[] perms ={
-                     Android.Manifest.Permission.WriteExternalStorage,Android.Manifest.Permission.Camera,Android.Manifest.Permission.RecordAudio};
+                string[] perms = { Android.Manifest.Permission.WriteExternalStorage,
+                    Android.Manifest.Permission.Camera,
+                    Android.Manifest.Permission.RecordAudio };
 
                 if (!EasyPermissions.HasPermissions(currentContext, perms))
                 {
                     EasyPermissions.RequestPermissions(currentActivity, currentContext.Resources.GetString(Resource.String.rationale_camera), RC_CAMERA, perms);
+
+                    return false;
                 }
                 else
                 {
@@ -224,6 +227,7 @@ namespace ImuiSample.Class.Activites
 
                     mChatView.SetCameraCaptureFile(fileDir, DateTime.Now.ToString("yyyyMMddHHmmss"));
                 }
+
                 return true;
             }
 
@@ -242,8 +246,7 @@ namespace ImuiSample.Class.Activites
                 {
                     EasyPermissions.RequestPermissions(currentActivity, currentContext.Resources.GetString(Resource.String.rationale_photo), RC_PHOTO, perms);
                 }
-                // TODO
-                //mChatView.GetChatInputView(). GetSelectPhotoView().updateData();
+                mChatView.GetChatInputView().SelectPhotoView.UpdateData();
                 return true;
             }
 

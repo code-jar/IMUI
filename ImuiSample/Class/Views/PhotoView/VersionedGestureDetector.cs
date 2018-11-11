@@ -23,11 +23,11 @@ namespace ImuiQS.Class.Views.PhotoView
             int sdkVersion = (int)Build.VERSION.SdkInt;
             VersionedGestureDetector detector = null;
 
-            if (sdkVersion < (int)Build.VERSION_CODES.Eclair)
+            if (sdkVersion < (int)BuildVersionCodes.Eclair)
             {
                 detector = new CupcakeDetector(context);
             }
-            else if (sdkVersion < (int)Build.VERSION_CODES.Froyo)
+            else if (sdkVersion < (int)BuildVersionCodes.Froyo)
             {
                 detector = new EclairDetector(context);
             }

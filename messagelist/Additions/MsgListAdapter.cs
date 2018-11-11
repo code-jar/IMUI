@@ -22,7 +22,7 @@ namespace CN.Jiguang.Imui.Messages
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            return OnCreateNewViewHolder(parent, viewType);
+            return OnCreateViewHolderNew(parent, viewType);
         }
     }
 }
