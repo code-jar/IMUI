@@ -47,7 +47,6 @@ namespace ImuiSample.Class.Activites
         private static List<string> mPathList = new List<string>();
         private static List<string> mMsgIdList = new List<string>();
 
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -140,13 +139,13 @@ namespace ImuiSample.Class.Activites
             private readonly int RC_CAMERA = 0x0002;
             private readonly int RC_PHOTO = 0x0003;
 
-            private Context currentContext;
+            //private Context currentContext;
             private Activity currentActivity;
 
             public MenuClickListener(Activity act)
             {
                 currentActivity = act;
-                currentContext = act.ApplicationContext;
+                //currentContext = act.ApplicationContext;
             }
 
             public void OnSendFiles(IList<FileItem> list)
@@ -211,19 +210,30 @@ namespace ImuiSample.Class.Activites
             public bool SwitchToCameraMode()
             {
                 ScrollToBottom();
+<<<<<<< HEAD
                 string[] perms = { Android.Manifest.Permission.WriteExternalStorage,
                     Android.Manifest.Permission.Camera,
                     Android.Manifest.Permission.RecordAudio };
+=======
+                string[] perms ={
+                     Android.Manifest.Permission.WriteExternalStorage,
+                    Android.Manifest.Permission.Camera,
+                    Android.Manifest.Permission.RecordAudio};
+>>>>>>> 4889fb595da70fb3da3b688d8b9c37f389330acc
 
-                if (!EasyPermissions.HasPermissions(currentContext, perms))
+                if (!EasyPermissions.HasPermissions(currentActivity, perms))
                 {
+<<<<<<< HEAD
                     EasyPermissions.RequestPermissions(currentActivity, currentContext.Resources.GetString(Resource.String.rationale_camera), RC_CAMERA, perms);
 
                     return false;
+=======
+                    EasyPermissions.RequestPermissions(currentActivity, currentActivity.Resources.GetString(Resource.String.rationale_camera), RC_CAMERA, perms);
+>>>>>>> 4889fb595da70fb3da3b688d8b9c37f389330acc
                 }
                 else
                 {
-                    string fileDir = currentContext.FilesDir.AbsolutePath + "/photo";
+                    string fileDir = currentActivity.FilesDir.AbsolutePath + "/photo";
 
                     mChatView.SetCameraCaptureFile(fileDir, DateTime.Now.ToString("yyyyMMddHHmmss"));
                 }
@@ -242,9 +252,9 @@ namespace ImuiSample.Class.Activites
                 ScrollToBottom();
                 string[] perms = { Android.Manifest.Permission.ReadExternalStorage };
 
-                if (!EasyPermissions.HasPermissions(currentContext, perms))
+                if (!EasyPermissions.HasPermissions(currentActivity, perms))
                 {
-                    EasyPermissions.RequestPermissions(currentActivity, currentContext.Resources.GetString(Resource.String.rationale_photo), RC_PHOTO, perms);
+                    EasyPermissions.RequestPermissions(currentActivity, currentActivity.Resources.GetString(Resource.String.rationale_photo), RC_PHOTO, perms);
                 }
                 mChatView.GetChatInputView().SelectPhotoView.UpdateData();
                 return true;
@@ -255,9 +265,9 @@ namespace ImuiSample.Class.Activites
                 ScrollToBottom();
                 string[] perms = { Android.Manifest.Permission.RecordAudio, Android.Manifest.Permission.WriteExternalStorage };
 
-                if (!EasyPermissions.HasPermissions(currentContext, perms))
+                if (!EasyPermissions.HasPermissions(currentActivity, perms))
                 {
-                    EasyPermissions.RequestPermissions(currentActivity, currentContext.Resources.GetString(Resource.String.rationale_record_voice), RC_RECORD_VOICE, perms);
+                    EasyPermissions.RequestPermissions(currentActivity, currentActivity.Resources.GetString(Resource.String.rationale_record_voice), RC_RECORD_VOICE, perms);
                 }
                 return true;
             }
@@ -271,29 +281,37 @@ namespace ImuiSample.Class.Activites
         }
         class RecordVoiceListener : Java.Lang.Object, IRecordVoiceListener
         {
-            private Context currentContext;
-            public RecordVoiceListener(Context ctx)
+            private readonly Activity _currentActivity;
+            public RecordVoiceListener(Activity ctx)
             {
-                currentContext = ctx;
+                _currentActivity = ctx;
             }
             public void OnStartRecord()
             {
-                string path = Android.OS.Environment.ExternalStorageDirectory.Path + "/voice";
-
-                var file = new File(path);
-                if (!file.Exists())
+                var perms = new string[] { Android.Manifest.Permission.WriteExternalStorage };
+                if (!EasyPermissions.HasPermissions(_currentActivity, perms))
                 {
-                    file.Mkdir();
+                    EasyPermissions.RequestPermissions(_currentActivity, _currentActivity.Resources.GetString(Resource.String.rationale_camera), 0x0002, perms);
                 }
-                mChatView.SetRecordVoiceFile(file.Path, DateTime.Now.ToString("yyyy-MM-dd-hhmmss"));
+                else
+                {
+                    string path = Android.OS.Environment.ExternalStorageDirectory.Path + "/voice";
+
+                    var file = new File(path);
+                    if (!file.Exists())
+                    {
+                        file.Mkdir();
+                    }
+                    mChatView.SetRecordVoiceFile(file.Path, DateTime.Now.ToString("yyyy-MM-dd-hhmmss"));
+                }
             }
-            public void OnFinishRecord(File p0, int p1)
+            public void OnFinishRecord(File p0, int duration)
             {
                 MyMessage message = new MyMessage(null, MessageMessageType.SendVoice.Ordinal())
                 {
                     FromUser = new DefaultUser("1", "Ironman", "R.drawable.ironman"),
                     MediaFilePath = p0.Path,
-                    Duration = p1,
+                    Duration = duration,
                     TimeString = DateTime.Now.ToString("HH:mm")
                 };
                 mAdapter.AddToStart(message, true);
@@ -345,10 +363,7 @@ namespace ImuiSample.Class.Activites
 
                 currentActivity.RunOnUiThread(() =>
                 {
-                    new Runnable(() =>
-                    {
-                        mAdapter.AddToStart(message, true);
-                    });
+                    mAdapter.AddToStart(message, true);
                 });
             }
         }
@@ -785,37 +800,12 @@ namespace ImuiSample.Class.Activites
             mAdapter.SetOnAvatarClickListener(new AvatarClickListener(this));
             mAdapter.SetMsgStatusViewClickListener(new MsgStatusViewClickListener(this));
 
-
             MyMessage message = new MyMessage("Hello World", MessageMessageType.ReceiveText.Ordinal())
             {
                 FromUser = new DefaultUser("0", "Deadpool", "R.drawable.deadpool")
             };
             mAdapter.AddToStart(message, true);
 
-            //MyMessage voiceMessage = new MyMessage("", MessageMessageType.ReceiveVoice.Ordinal())
-            //{
-            //    FromUser = new DefaultUser("0", "Deadpool", "R.drawable.deadpool"),
-            //    MediaFilePath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/voice/2018-02-28-105103.m4a",
-            //    Duration = 4
-            //};
-            //mAdapter.AddToStart(voiceMessage, true);
-
-            //MyMessage sendVoiceMsg = new MyMessage("", MessageMessageType.SendVoice.Ordinal())
-            //{
-            //    FromUser = new DefaultUser("1", "Ironman", "R.drawable.ironman"),
-            //    MediaFilePath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/voice/2018-02-28-105103.m4a",
-            //    Duration = 4
-            //};
-            //mAdapter.AddToStart(sendVoiceMsg, true);
-            //MyMessage eventMsg = new MyMessage("haha", MessageMessageType.Event.Ordinal());
-            //mAdapter.AddToStart(eventMsg, true);
-
-            //MyMessage receiveVideo = new MyMessage("", MessageMessageType.ReceiveVideo.Ordinal());
-            //receiveVideo.MediaFilePath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + "/Pictures/Hangouts/video-20170407_135638.3gp";
-            //receiveVideo.Duration = 4;
-            //receiveVideo.FromUser = new DefaultUser("0", "Deadpool", "R.drawable.deadpool");
-            //mAdapter.AddToStart(receiveVideo, true);
-            //mAdapter.AddToEndChronologically(mData);
             var layout = mChatView.GetPtrLayout();
             layout.SetPtrHandler(new PtrHandler(this));
             mAdapter.SetOnLoadMoreListener(new OnLoadMoreListener());
@@ -844,6 +834,20 @@ namespace ImuiSample.Class.Activites
         private void ShowMsg(string msg)
         {
             Toast.MakeText(this, msg, ToastLength.Short).Show();
+        }
+
+
+        public override void OnBackPressed()
+        {
+            var chatInputView = mChatView.GetChatInputView();
+            if (chatInputView.MenuState == (int)ViewStates.Visible)
+            {
+                chatInputView.DismissMenuLayout();
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
         }
     }
 }
