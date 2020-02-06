@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>IMUI.Android.ChatInput</id>
+    <version>0.10.0</version>
+    <title>IMUI.Android.Messagelist</title>
+    <authors>ricarod_jar</authors>
+    <owners>ricarod_jar</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/code-jar/IMUI</projectUrl>
+    <iconUrl>https://www.codeasy.vip/jiguang.jpg</iconUrl>
+    <description>imui chatinput xamarin android bind libary</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2020</copyright>
+    <tags>chatinput imui xamarichatinputn android</tags>
+    <dependencies>
+      <group targetFramework="MonoAndroid8.1">
+        <dependency id="Xamarin.Android.Support.Design" version="27.0.2.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+  <file src="..\chatinput\bin\Release\chatinput.dll" target="lib\monoandroid81\" />
+ </files>
+</package>

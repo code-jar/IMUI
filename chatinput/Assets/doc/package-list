@@ -1,0 +1,15 @@
+cn.jiguang.imui.chatinput
+cn.jiguang.imui.chatinput.camera
+cn.jiguang.imui.chatinput.emoji
+cn.jiguang.imui.chatinput.emoji.adapter
+cn.jiguang.imui.chatinput.emoji.data
+cn.jiguang.imui.chatinput.emoji.listener
+cn.jiguang.imui.chatinput.emoji.widget
+cn.jiguang.imui.chatinput.listener
+cn.jiguang.imui.chatinput.menu
+cn.jiguang.imui.chatinput.menu.collection
+cn.jiguang.imui.chatinput.menu.view
+cn.jiguang.imui.chatinput.model
+cn.jiguang.imui.chatinput.photo
+cn.jiguang.imui.chatinput.record
+cn.jiguang.imui.chatinput.utils

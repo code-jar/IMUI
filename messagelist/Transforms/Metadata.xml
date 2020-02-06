@@ -1,0 +1,29 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <remove-node path="/api/package[@name='cn.jiguang.imui.commons']/class[@name='ViewHolder']/method[@name='onBind' and count(parameter)=1 and parameter[1][@type='DATA']]" />
+
+  <attr path="/api/package[@name='cn.jiguang.imui.messages']/class[@name='MsgListAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="visibility">internal</attr>
+  <attr path="/api/package[@name='cn.jiguang.imui.messages']/class[@name='MsgListAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="managedName">OnCreatingViewHolder</attr>
+
+  <!--Deprecated-->
+  <remove-node path="/api/package[@name='cn.jiguang.imui.messages']/interface[@name='ScrollMoreListener.OnLoadMoreListener']" />
+
+  <remove-node path="/api/package[@name='cn.jiguang.imui.messages']/interface[@name='ViewHolderController.ReplayVoiceListener']" />
+
+  <add-node path="/api/package[@name='cn.jiguang.imui.messages']/class[@name='ViewHolderController']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="SetReplayVoiceListener" native="false" return="void" static="false" synchronized="false" visibility="public">
+      <parameter name="listener" type="cn.jiguang.imui.messages.ViewHolderController.ReplayVoiceListener"/>
+    </method>
+  </add-node>
+
+
+
+
+</metadata>
